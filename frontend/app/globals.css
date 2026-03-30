@@ -1,3 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-[var(--slate-900)] antialiased transition-colors duration-500;
+    font-family: 'Inter', var(--font-sans);
+    background-image: 
+      radial-gradient(at 0% 0%, var(--lavender-50) 0, transparent 40%),
+      radial-gradient(at 100% 0%, var(--mint-50) 0, transparent 40%),
+      radial-gradient(at 50% 100%, var(--sky-50) 0, transparent 40%);
+    background-attachment: fixed;
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight font-semibold text-[var(--slate-900)];
+    font-family: 'Inter', var(--font-sans);
+  }
+
+  :root {
+    --glass-grad: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
+    --neon-glow: 0 0 20px rgba(167, 139, 250, 0.3);
+  }
+}
+
+.premium-blur {
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+}
+
+.premium-card-shadow {
+  box-shadow: 
+    0 0 0 1px rgba(0, 0, 0, 0.03),
+    0 2px 4px rgba(0, 0, 0, 0.02),
+    0 12px 24px -4px rgba(0, 0, 0, 0.04);
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-white/70 backdrop-blur-xl border border-white/60 rounded-3xl;
+    box-shadow: 
+      0 0 0 1px rgba(0, 0, 0, 0.02),
+      0 20px 40px -10px rgba(0, 0, 0, 0.05);
+  }
+
+  .glass-card {
+    @apply bg-white/60 backdrop-blur-md border border-white/80 shadow-lg rounded-2xl transition-all duration-300;
+  }
+
+  .glass-card:hover {
+    @apply shadow-xl -translate-y-0.5 border-white bg-white/80;
+  }
+
+  /* Professional Ticker Animation */
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+
+  .animate-marquee-slower {
+    animation: marquee 80s linear infinite;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .safe-area-pt {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+/* Custom Scrollbar - Minimal and modern */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--slate-200);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--slate-300);
+}
+

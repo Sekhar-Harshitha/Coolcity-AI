@@ -1,0 +1,79 @@
+@keyframes spin-leaf {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes pulse-border {
+  0%, 100% { box-shadow: 0 0 0 2px var(--lavender-200); }
+  50% { box-shadow: 0 0 0 6px var(--lavender-300), 0 0 20px rgba(196,181,253,0.4); }
+}
+
+@keyframes scan {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0) rotate(-15deg); }
+  70% { transform: scale(1.2) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes marker-drop {
+  0% { transform: translateY(-40px) scale(0.5); opacity: 0; }
+  60% { transform: translateY(4px) scale(1.1); opacity: 1; }
+  80% { transform: translateY(-2px) scale(0.95); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes ripple {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+@keyframes confetti-burst {
+  0% { transform: translate(0,0) rotate(0deg) scale(1); opacity: 1; }
+  100% { transform: translate(var(--tx), var(--ty)) rotate(var(--rot,360deg)) scale(0.3); opacity: 0; }
+}
+
+@keyframes pulse-flame {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px #fdba74); }
+  50% { transform: scale(1.15); filter: drop-shadow(0 0 8px #fb923c); }
+}
+
+@keyframes rainbow-flame {
+  0% { filter: hue-rotate(0deg) drop-shadow(0 0 8px rgba(251,191,36,0.8)); }
+  100% { filter: hue-rotate(360deg) drop-shadow(0 0 8px rgba(251,191,36,0.8)); }
+}
+
+.floating-xp-anim {
+  animation: floatUp 1.2s ease-out forwards;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-80px); opacity: 0; }
+}
+
+/* Base Interactions for all Interactive elements */
+button, a {
+  transition: all 200ms ease;
+}
+button:hover, a:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+button:active, a:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+button:focus-visible, a:focus-visible {
+  outline: 3px solid var(--lavender-300);
+  outline-offset: 2px;
+}

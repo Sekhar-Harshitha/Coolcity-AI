@@ -1,0 +1,81 @@
+:root {
+  /* Linear-style Neutrals */
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+
+  /* Lavender palette (Primary) */
+  --lavender-50: #faf5ff;
+  --lavender-100: #f3e8ff;
+  --lavender-200: #e9d5ff;
+  --lavender-300: #d8b4fe;
+  --lavender-400: #c4b5fd;
+  --lavender-500: #a78bfa;
+  --lavender-600: #8b5cf6;
+  --lavender-700: #7c3aed;
+
+  /* Mint palette (Mitigation) */
+  --mint-50: #f0fdf4;
+  --mint-100: #dcfce7;
+  --mint-200: #bbf7d0;
+  --mint-300: #86efac;
+  --mint-400: #4ade80;
+  --mint-500: #22c55e;
+  --mint-600: #16a34a;
+
+  /* Blush palette (Heat) */
+  --blush-50: #fff1f2;
+  --blush-100: #ffe4e6;
+  --blush-200: #fecdd3;
+  --blush-300: #fda4af;
+  --blush-400: #fb7185;
+  --blush-500: #f43f5e;
+  --blush-600: #e11d48;
+
+  /* Sky palette (Info) */
+  --sky-50: #f0f9ff;
+  --sky-100: #e0f2fe;
+  --sky-200: #bae6fd;
+  --sky-300: #7dd3fc;
+  --sky-400: #38bdf8;
+  --sky-500: #0ea5e9;
+
+  /* Semantic - SaaS Standard */
+  --bg-primary: #ffffff;
+  --bg-secondary: #fbfbfc;
+  --bg-card: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.7);
+
+  --text-primary: #121212;
+  --text-secondary: #555555;
+  --text-muted: #888888;
+
+  --border-soft: rgba(0, 0, 0, 0.04);
+  --border-medium: rgba(0, 0, 0, 0.1);
+
+  /* Premium SaaS Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.01), 0 2px 4px -2px rgba(0, 0, 0, 0.01);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -4px rgba(0, 0, 0, 0.02);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+  --shadow-premium: 0 0 0 1px rgba(0,0,0,0.01), 0 20px 40px -10px rgba(0,0,0,0.05);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-full: 9999px;
+
+  --font-display: 'DM Sans', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+

@@ -1,8 +1,10 @@
-import withPWA from "next-pwa";
+import withPWAInit from "next-pwa";
 
-const pwaConfig = withPWA({
+const withPWA = withPWAInit({
   dest: "public",
   disable: process.env.NODE_ENV === "development",
+  register: true,
+  skipWaiting: true,
   runtimeCaching: [
       {
         urlPattern: /^https:\/\/.*\.tile\.openstreetmap\.org\/.*/i,
@@ -15,22 +17,15 @@ const pwaConfig = withPWA({
           },
         },
       },
-    {
-      urlPattern: /\/api\/.*/i,
-      handler: "NetworkFirst",
-      options: {
-        cacheName: "api-responses",
-        expiration: {
-          maxEntries: 50,
-          maxAgeSeconds: 24 * 60 * 60, // 24 hours
-        },
-        networkTimeoutSeconds: 10,
-      },
-    },
   ],
 });
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  reactStrictMode: true,
+  images: {
+    domains: ['server.arcgisonline.com', 'unpkg.com'],
+  },
+};
 
-export default pwaConfig(nextConfig);
+export default withPWA(nextConfig);

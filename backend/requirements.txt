@@ -1,3 +1,8 @@
-fastapi==0.111.0
-uvicorn[standard]==0.29.0
-pydantic==2.7.1
+opencv-python-headless
+numpy
+fastapi
+python-dotenv
+httpx
+pillow
+pydantic
+uvicorn[standard]
