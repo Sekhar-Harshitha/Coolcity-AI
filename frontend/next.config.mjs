@@ -4,17 +4,17 @@ const pwaConfig = withPWA({
   dest: "public",
   disable: process.env.NODE_ENV === "development",
   runtimeCaching: [
-    {
-      urlPattern: /^https:\/\/api\.mapbox\.com\/.*/i,
-      handler: "CacheFirst",
-      options: {
-        cacheName: "mapbox-tiles",
-        expiration: {
-          maxEntries: 200,
-          maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+      {
+        urlPattern: /^https:\/\/.*\.tile\.openstreetmap\.org\/.*/i,
+        handler: "CacheFirst",
+        options: {
+          cacheName: "openstreetmap-tiles",
+          expiration: {
+            maxEntries: 200,
+            maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+          },
         },
       },
-    },
     {
       urlPattern: /\/api\/.*/i,
       handler: "NetworkFirst",
