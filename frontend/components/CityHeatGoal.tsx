@@ -2,9 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { Target, Leaf, TrendingDown, Thermometer, ShieldCheck } from 'lucide-react';
+import { useGamification } from '@/components/gamification/GamificationProvider';
 
 export const CityHeatGoal = () => {
   const [progress, setProgress] = useState(15);
+  const { addToast } = useGamification();
   const target = 5.0; // 5 degrees reduction target
   const current = 0.8; // 0.8 degrees achieved
 
@@ -15,7 +17,10 @@ export const CityHeatGoal = () => {
   }, []);
 
   return (
-    <div className="w-full bg-white rounded-[32px] p-8 border border-slate-200/50 shadow-premium hover:shadow-xl transition-all group overflow-hidden relative">
+    <div 
+      className="w-full bg-white rounded-[32px] p-8 border border-slate-200/50 shadow-premium hover:shadow-xl transition-all group overflow-hidden relative cursor-pointer active:scale-[0.99]"
+      onClick={() => addToast('achievement', 'Weekly goal sequence initiated! 🎯', '🏆')}
+    >
       {/* Decorative Background Element */}
       <div className="absolute -right-12 -top-12 w-48 h-48 bg-slate-50 rounded-full opacity-50 group-hover:scale-110 transition-transform duration-700 pointer-events-none" />
       

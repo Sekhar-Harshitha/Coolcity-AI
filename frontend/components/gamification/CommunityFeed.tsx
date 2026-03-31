@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect, useMemo } from 'react';
-import { Leaf, AlertTriangle, MapPin, Trophy, CloudSnow, Flame, TreePine, Bell, Clock, Search, Filter } from 'lucide-react';
+import { Leaf, AlertTriangle, MapPin, Trophy, CloudSnow, Flame, TreePine, Bell, Clock, Search, Filter, Heart, ShieldCheck } from 'lucide-react';
+import { useGamification } from './GamificationProvider';
 
 const mockFeedBase = [
   { id: 1, type: 'tree_present', name: 'Aditya Sharma', loc: 'Jubilee Hills', points: 20, time: '2 mins ago', badge: '🏆', category: 'Trees' },
@@ -18,6 +19,8 @@ export default function CommunityFeed() {
   const [items, setItems] = useState(mockFeedBase);
   const [searchQuery, setSearchQuery] = useState('');
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const { addXP, addToast } = useGamification();
+  const [likedItems, setLikedItems] = useState<number[]>([]);
 
   useEffect(() => {
     const fetchFeed = async () => {
@@ -143,13 +146,33 @@ export default function CommunityFeed() {
                         </div>
                      </div>
                      
-                     <div className="p-5 flex items-center justify-between">
-                        <div className="flex items-center gap-2 text-slate-600">
-                           <MapPin className="w-4 h-4 text-emerald-500" />
-                           <span className="text-xs font-bold">{item.loc}</span>
+                     <div className="p-5 flex items-center justify-between border-t border-slate-50">
+                        <div className="flex items-center gap-6">
+                           <button 
+                             onClick={() => {
+                                if (!likedItems.includes(item.id)) {
+                                    setLikedItems([...likedItems, item.id]);
+                                    addXP(1, 'Social', null);
+                                    addToast('success', 'You applauded an environmental report! 🌿', '👏');
+                                }
+                             }}
+                             className={`flex items-center gap-1.5 transition-all ${likedItems.includes(item.id) ? 'text-rose-500 scale-110' : 'text-slate-400 hover:text-rose-500'}`}
+                           >
+                              <Heart className={`w-4 h-4 ${likedItems.includes(item.id) ? 'fill-current' : ''}`} />
+                              <span className="text-[10px] font-black uppercase tracking-widest">{likedItems.includes(item.id) ? 'Loved' : 'Applaud'}</span>
+                           </button>
+                           <button 
+                             onClick={() => addToast('info', 'Report verification protocol initiated...', '🛡️')}
+                             className="flex items-center gap-1.5 text-slate-400 hover:text-sky-500 transition-all"
+                           >
+                              <ShieldCheck className="w-4 h-4" />
+                              <span className="text-[10px] font-black uppercase tracking-widest">Verify</span>
+                           </button>
                         </div>
-                        <div className="bg-emerald-50 px-3 py-1 rounded-lg border border-emerald-100">
-                           <span className="text-[11px] font-black text-emerald-600">+{item.points} XP</span>
+                        <div className="flex items-center gap-3">
+                           <div className="bg-emerald-50 px-3 py-1 rounded-lg border border-emerald-100">
+                              <span className="text-[11px] font-black text-emerald-600">+{item.points} XP</span>
+                           </div>
                         </div>
                      </div>
                   </div>

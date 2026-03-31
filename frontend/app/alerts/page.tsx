@@ -5,9 +5,12 @@ import Link from 'next/link';
 import { ArrowLeft, Thermometer, Activity, CloudFog, MapPin, BellRing } from 'lucide-react';
 import { HEAT_ALERTS, getAlertStyle, HeatAlertBanner } from '@/components/heatAlerts/HeatAlertEngine';
 import { Navigation } from '@/components/Navigation';
+import { useGamification } from '@/components/gamification/GamificationProvider';
 
 export default function AlertDashboard() {
   const activeCount = HEAT_ALERTS.length;
+  const { addToast } = useGamification();
+  const [notified, setNotified] = useState(false);
   
   return (
     <div className="flex flex-col h-[100dvh] bg-[var(--bg-primary)] text-gray-800 font-body pb-20 md:pb-0 overflow-y-auto w-full">
@@ -87,7 +90,12 @@ export default function AlertDashboard() {
 
       </main>
 
-      <Navigation activeTab={"alerts" as any} setActiveTab={() => {}} onOpenRecent={() => {}} />
+      <Navigation 
+        activeTab={"about" as any} 
+        setActiveTab={() => {}} 
+        onOpenRecent={() => {}} 
+        onOpenAI={() => {}}
+      />
     </div>
   )
 }

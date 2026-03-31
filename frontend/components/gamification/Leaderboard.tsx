@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { getUserProfile } from '@/lib/gamification/pointsEngine';
 import { Trophy, Medal, Star, TrendingUp, Globe, Users, Briefcase, GraduationCap, ChevronRight, Search } from 'lucide-react';
+import { useGamification } from './GamificationProvider';
 
 const mockCitizensBase = [
   { name: 'Aditya Sharma', points: 4800, badge: '🌆', zones: 5, trend: [20, 30, 45, 60, 80, 70, 90], city: 'Hyderabad' },
@@ -57,6 +58,7 @@ export default function Leaderboard() {
   const [cityFilter, setCityFilter] = useState('All Cities');
   const [searchQuery, setSearchQuery] = useState('');
   const [data, setData] = useState<any[]>([]);
+  const { addToast } = useGamification();
   const [animating, setAnimating] = useState(true);
   const [userProfile, setUserProfile] = useState<any>(null);
 
@@ -247,7 +249,10 @@ export default function Leaderboard() {
                     <p className={`font-black text-3xl tracking-tighter ${item.isUser ? 'text-emerald-700' : 'text-slate-900'}`}>{item.points.toLocaleString()}</p>
                     <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest leading-none">Net Points</p>
                   </div>
-                  <button className="p-3 bg-slate-50 text-slate-300 rounded-2xl hover:bg-slate-900 hover:text-white transition-all group-hover:bg-slate-100 group-hover:text-slate-400">
+                  <button 
+                    onClick={() => addToast('info', `Transferring to ${item.name}'s public profile...`, '👤')}
+                    className="p-3 bg-slate-50 text-slate-300 rounded-2xl hover:bg-slate-900 hover:text-white transition-all group-hover:bg-slate-100 group-hover:text-slate-400"
+                  >
                     <ChevronRight className="w-5 h-5" />
                   </button>
                 </div>

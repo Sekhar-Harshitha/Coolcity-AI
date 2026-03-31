@@ -18,9 +18,12 @@ import {
   MoreHorizontal
 } from 'lucide-react';
 
+import { useGamification } from '@/components/gamification/GamificationProvider';
+
 export default function CitizenProfile() {
   const [profile, setProfile] = useState<any>(null);
   const [activeSegment, setActiveSegment] = useState('Overview');
+  const { addToast, addXP } = useGamification();
 
   useEffect(() => {
     getUserProfile().then(setProfile);

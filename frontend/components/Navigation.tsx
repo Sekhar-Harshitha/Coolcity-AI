@@ -1,54 +1,63 @@
 'use client'
 
 import React from 'react';
-import { Map, Zap, History, LayoutDashboard } from 'lucide-react';
+import { Compass, Zap, History, LayoutDashboard, BrainCircuit } from 'lucide-react';
 
 interface NavigationProps {
-  activeTab: 'map' | 'history' | 'about';
-  setActiveTab: (tab: 'map' | 'history' | 'about') => void;
+  activeTab: 'dashboard' | 'map' | 'history' | 'about';
+  setActiveTab: (tab: 'dashboard' | 'map' | 'history' | 'about') => void;
   onOpenRecent: () => void;
   onOpenAI: () => void;
 }
 
 export const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab, onOpenRecent, onOpenAI }) => {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-[1000] bg-white/90 backdrop-blur-xl border-t border-slate-200/80 md:hidden safe-area-pb">
-      <div className="flex justify-around items-center h-20 px-6">
+    <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[1000] w-[92%] max-w-md bg-white/70 backdrop-blur-2xl border border-white/20 rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.15)] md:hidden safe-area-pb p-2">
+      <div className="flex justify-between items-center h-16 px-2 relative">
+        {/* Active Highlight Glow - Dynamic Position */}
+        <div 
+          className="absolute h-12 w-1/4 bg-slate-950 rounded-[24px] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] z-0 shadow-xl shadow-slate-900/40"
+          style={{ 
+            left: activeTab === 'dashboard' ? '4px' : 
+                  activeTab === 'history' ? 'calc(25% + 4px)' : 
+                  activeTab === 'map' ? 'calc(50% + 4px)' : 
+                  'calc(75% + 4px)',
+            width: 'calc(25% - 8px)'
+          }}
+        />
+
         <button 
-          onClick={() => setActiveTab('map')}
-          className={`flex flex-col items-center gap-1.5 transition-all ${activeTab === 'map' ? 'text-slate-900 scale-105' : 'text-slate-400 hover:text-slate-600'}`}
+          onClick={() => setActiveTab('dashboard')}
+          className={`relative z-10 flex flex-col items-center justify-center flex-1 transition-all duration-500 ${activeTab === 'dashboard' ? 'text-white scale-110' : 'text-slate-400 hover:text-slate-600'}`}
         >
-          <LayoutDashboard className={`w-6 h-6 ${activeTab === 'map' ? 'text-slate-900' : 'text-slate-400'}`} />
-          <span className="text-[10px] font-bold uppercase tracking-widest">Dashboard</span>
+          <LayoutDashboard className="w-5 h-5" />
+          <span className="text-[8px] font-black uppercase tracking-[0.2em] mt-1.5 leading-none">Feed</span>
         </button>
         
         <button 
-          onClick={onOpenRecent}
-          className={`flex flex-col items-center gap-1.5 transition-all ${activeTab === 'history' ? 'text-slate-900 scale-105' : 'text-slate-400 hover:text-slate-600'}`}
+          onClick={() => setActiveTab('history')}
+          className={`relative z-10 flex flex-col items-center justify-center flex-1 transition-all duration-500 ${activeTab === 'history' ? 'text-white scale-110' : 'text-slate-400 hover:text-slate-600'}`}
         >
-          <History className={`w-6 h-6 ${activeTab === 'history' ? 'text-slate-900' : 'text-slate-400'}`} />
-          <span className="text-[10px] font-bold uppercase tracking-widest">History</span>
+          <History className="w-5 h-5" />
+          <span className="text-[8px] font-black uppercase tracking-[0.2em] mt-1.5 leading-none">Logs</span>
         </button>
-
-        <div className="relative -top-10">
-          <div className="absolute inset-0 bg-slate-900 blur-2xl opacity-20 rounded-full animate-pulse" />
-          <button 
-            onClick={onOpenAI}
-            className="relative p-5 rounded-[22px] bg-slate-900 text-white shadow-xl shadow-slate-200 active:scale-90 transition-all border-[6px] border-white"
-          >
-            <Zap className="w-7 h-7" />
-          </button>
-        </div>
 
         <button 
           onClick={() => setActiveTab('map')}
-          className={`flex flex-col items-center gap-1.5 transition-all text-slate-400 hover:text-slate-600`}
+          className={`relative z-10 flex flex-col items-center justify-center flex-1 transition-all duration-500 ${activeTab === 'map' ? 'text-white scale-110' : 'text-slate-400 hover:text-slate-600'}`}
         >
-          <Map className="w-6 h-6" />
-          <span className="text-[10px] font-bold uppercase tracking-widest">Explorer</span>
+          <Compass className="w-5 h-5" />
+          <span className="text-[8px] font-black uppercase tracking-[0.2em] mt-1.5 leading-none">Strategy</span>
+        </button>
+
+        <button 
+          onClick={() => setActiveTab('about')}
+          className={`relative z-10 flex flex-col items-center justify-center flex-1 transition-all duration-500 ${activeTab === 'about' ? 'text-white scale-110' : 'text-slate-400 hover:text-slate-600'}`}
+        >
+          <BrainCircuit className="w-5 h-5" />
+          <span className="text-[8px] font-black uppercase tracking-[0.2em] mt-1.5 leading-none">Core</span>
         </button>
       </div>
     </nav>
   );
 };
-

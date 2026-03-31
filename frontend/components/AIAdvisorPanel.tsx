@@ -131,7 +131,13 @@ export const AIAdvisorPanel: React.FC<AIAdvisorPanelProps> = ({ isOpen, onClose,
                       Initialize decentralized cooling node deployment across the identified thermal hotspots of Bangalore CBD.
                     </p>
                   </div>
-                  <button className="w-full py-4 bg-white text-slate-900 rounded-2xl font-bold text-sm flex items-center justify-center gap-2.5 hover:bg-slate-50 transition-all hover:scale-[1.02] active:scale-95 shadow-xl shadow-slate-950/20">
+                  <button 
+                    className="w-full py-4 bg-white text-slate-900 rounded-2xl font-bold text-sm flex items-center justify-center gap-2.5 hover:bg-slate-50 transition-all hover:scale-[1.02] active:scale-95 shadow-xl shadow-slate-950/20"
+                    onClick={() => {
+                        alert("🚀 Initializing CoolGrid Alpha decentralized cooling node deployment sequence...");
+                        onClose();
+                    }}
+                  >
                     Implement Protocol <ChevronRight className="w-4 h-4" />
                   </button>
                 </div>
